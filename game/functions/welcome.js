@@ -19,8 +19,8 @@ function welcome(character) {
     }
 
     console.log(`=================================`)
-}
+} //apresentação inicial para jogador
 
-//welcome(character)
+//welcome(character) -> teste de funcionalidade
 
 module.exports = welcome(character)
