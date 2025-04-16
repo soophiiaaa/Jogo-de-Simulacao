@@ -1,4 +1,4 @@
-class   Catastrofe {
+class Catastrofe {
    constructor(nome, descricao) {
     this.nome = nome
     this.descricao = descricao;
@@ -42,20 +42,11 @@ class Terremoto extends Catastrofe {
    }
 }
 
-const desastres = [
-   new Intergalactica(),
-   new InvasaoAlienigina(),
-   new ColapsoIA(),
-   new RatosMutantes(),
-   new Terremoto()
-];
-
 module.exports = {
    Catastrofe,
    Intergalactica,
    InvasaoAlienigina,
    ColapsoIA,
    RatosMutantes,
-   Terremoto,
-   desastres
-} 
+   Terremoto
+}
