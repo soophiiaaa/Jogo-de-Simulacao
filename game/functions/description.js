@@ -1,6 +1,6 @@
 const prompt = require('prompt-sync')()
 
-const Character = require('../character/character')
+const Character = require('../models/character')
 //const Event = require()
 const Items = require('../items/items')
 
