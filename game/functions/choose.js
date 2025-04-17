@@ -1,11 +1,20 @@
 const Character = require('../models/character')
-const { Items, Food, FirstAid, Survival } = require('../items/items')
+const Items = require('../items/items')
 
 let character = new Character
 let items = new Items
-let food = new Food
-let firstaid = new FirstAid
-let survival = new Survival
+
+function separateItems(input, items, character) {
+    character.resources = input.split(' ').map(item => parseInt(item.trim()))
+
+    for (i = 0; i < character.resources.length; i++) {
+        for (j = 0; j < items.avaliableItems.length; j++) {
+            if (character.resources[i] === items.avaliableItems[j].id) {
+                character.resources[i] = items.avaliableItems[j].name
+            }
+        }
+    }
+}
 
 function chooseItems(character) {
     const readline = require('readline').createInterface({
@@ -15,20 +24,17 @@ function chooseItems(character) {
 
     let timer
 
+    timer = setTimeout(() => {
+        console.log('⏰ O tempo acaba e você corre para um local seguro...')
+        readline.close()
+    }, 6000)
+
     readline.question('Escolha o número dos seus itens: ', (input) => {
-
-        
-
-        character.resources.push(input)
+        separateItems(input, items, character)
+        console.log(`Itens Selecionados: ${character.resources}`)
         clearTimeout(timer)
         readline.close()
     })
-
-    setTimeout(() => {
-        console.log('⏰ O tempo acaba e você corre para um local seguro...')
-        console.log(character.resources)
-        readline.close()
-    }, 6000)
 }
 
 chooseItems(character)
