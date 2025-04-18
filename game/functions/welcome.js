@@ -1,14 +1,25 @@
 const prompt = require('prompt-sync')()
-const Character = require('../character/character')
-const character = new Character
+const { readPlayers, newGame, loadGame } = require('./players_functions')
 
-function welcome(character) {
+function welcome() {
     console.log(`=====💥O MUNDO EM COLAPSO!💥=====`)
     console.log(`Olá! Bem-vindo(a) ao nosso jogo!`)
+    console.log(`=================================`)
+    console.log(`1 - Novo Jogo`)
+    console.log(`2 - Carregar Jogo`)
+    console.log(`=================================`)
+    
+    let choice = parseInt(prompt('Escolha uma opção: '))
 
-    let nome = prompt(`Como podemos te chamar? `)
-    character.name = nome
-    let iniciar = prompt(`Pronto(a) para iniciar, ${nome} (s/n)? `)
+    if (choice === 1) {
+        newGame()
+    }
+
+    if (choice === 2) {
+        loadGame(readPlayers)
+    }
+
+    let iniciar = prompt(`Pronto(a) para iniciar, (s/n)? `)
 
     if (iniciar === 's') {
         console.log(`Esse é o espírito! Aproveite a simulação!`)
@@ -21,6 +32,6 @@ function welcome(character) {
     console.log(`=================================`)
 } //apresentação inicial para jogador
 
-//welcome(character) -> teste de funcionalidade
+welcome()
 
-module.exports = welcome(character)
+module.exports = welcome
