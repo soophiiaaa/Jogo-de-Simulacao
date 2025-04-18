@@ -1,0 +1,19 @@
+[
+  {
+    "id": 0,
+    "name": "Sophia",
+    "resources": [
+      "Garrafa de Água"
+    ],
+    "days": 27
+  },
+  {
+    "id": 1,
+    "name": "Pedro",
+    "resources": [
+      "Kit de Primeiros Socorros",
+      "Garrafa de Água"
+    ],
+    "days": 12
+  }
+]
