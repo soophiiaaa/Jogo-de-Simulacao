@@ -1,5 +1,8 @@
+const id = require('../functions/id')
+
 class Character {
     constructor(name) {
+        this.id = id()
         this.name = name
         this.resources = []
         this.days = 0
