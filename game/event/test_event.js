@@ -6,7 +6,7 @@ const {
     RatosMutantes,
     Terremoto,
     desastres
- } = require ("./eventos")
+ } = require ("./event")
 
  const cast = [
     Catastrofe(),
