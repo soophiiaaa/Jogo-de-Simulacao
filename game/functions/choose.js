@@ -27,7 +27,9 @@ function chooseItems(character) {
     timer = setTimeout(() => {
         console.log('⏰ O tempo acaba e você corre para um local seguro...')
         readline.close()
-    }, 6000)
+    }, 60000)
+
+    console.log(items.avaliableItems)
 
     readline.question('Escolha o número dos seus itens: ', (input) => {
         separateItems(input, items, character)
