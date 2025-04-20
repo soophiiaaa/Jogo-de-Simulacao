@@ -1,5 +1,5 @@
 const prompt = require('prompt-sync')()
-const { readPlayers, newGame, loadGame } = require('./players_functions')
+const { readPlayers, newGame, loadGame } = require('../services/save_load_service')
 
 function welcome() {
     console.log(`=====💥O MUNDO EM COLAPSO!💥=====`)

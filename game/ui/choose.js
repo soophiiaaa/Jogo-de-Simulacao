@@ -1,8 +1,7 @@
-const Character = require('../models/character')
-const Items = require('../items/items')
+const Character = require('../core/character')
+const Items = require('../core/items')
 
-let character = new Character
-let items = new Items
+let items = new Items()
 
 function separateItems(input, items, character) {
     character.resources = input.split(' ').map(item => parseInt(item.trim()))
@@ -40,3 +39,5 @@ function chooseItems(character) {
 }
 
 chooseItems(character)
+
+module.exports = chooseItems
