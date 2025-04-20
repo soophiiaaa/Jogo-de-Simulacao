@@ -1,4 +1,4 @@
-const id = require('../functions/id')
+const id = require('./id')
 
 class Character {
     constructor(name) {
