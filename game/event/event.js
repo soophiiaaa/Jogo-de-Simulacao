@@ -1,52 +1,64 @@
 class Catastrofe {
    constructor(nome, descricao) {
-    this.nome = nome
-    this.descricao = descricao;
+     this.nome = nome;
+     this.descricao = descricao;
    }
-   intoducao(){
-    console.log(`Catastrofe: ${this.nome} Origem: ${this.descricao}`);
-   }
-}
-//  let desastre = new Catastrofe("Guerra intergalatica", "Depois da invasão do lado mal da força os Jedi foram encontrar o Dater Vader para matar mas no fim acabou que o mundo entrou em colapso")
  
-//  desastre.intoducao() 
-//  testando ^
-
-class Intergalactica extends Catastrofe {
-   constructor(nome, descricao){
-      super("Guerra Intergaláctica", "Depois da invasão do lado mal da força, os Jedi tentaram nos salvar, mas o mundo colapsou")
+   introducao() {
+     console.log(`Catástrofe: ${this.nome}`);
+     console.log(`Descrição: ${this.descricao}`);
    }
-}
-
-class InvasaoAlienigina extends Catastrofe {
-   constructor(nome, descricao){
-      super("Invasão Alíenigina", "Os alíenginas pousaram na Terra e comecaram a capturar seres humanos")
+ 
+   static gerarDesastreAleatorio() {
+     const catastrofes = [
+       new Intergalactica(),
+       new InvasaoAlienigena(),
+       new ColapsoIA(),
+       new RatosMutantes(),
+       new Terremoto()
+     ];
+ 
+     const aleatorio = Math.floor(Math.random() * catastrofes.length);
+     return catastrofes[aleatorio];
    }
-}
-
-class ColapsoIA extends Catastrofe {
-   constructor(nome, descricao){
-      super("Colapso IA", "A inteligencia artificial que controlova o mundo se voltou contra a humanidade. Nada mais é seguro")
+ }
+ 
+ class Intergalactica extends Catastrofe {
+   constructor() {
+     super("Guerra Intergaláctica", "Depois da invasão do lado mal da força, os Jedi tentaram nos salvar, mas o mundo colapsou.");
    }
-}
-
-class RatosMutantes extends Catastrofe {
-   constructor(nome, descricao){
-      super("Ratos Mutantes", "Experimentos genéticos secretos  deram errados. Agora, ratos do tamanho de um ursam dominam o planeta terra ")
+ }
+ 
+ class InvasaoAlienigena extends Catastrofe {
+   constructor() {
+     super("Invasão Alienígena", "Os alienígenas pousaram na Terra e começaram a capturar seres humanos.");
    }
-}
-
-class Terremoto extends Catastrofe {
-   constructor(nome, descricao){
-      super("Terremoto", "Falhas tectonicas ao redor do planeta começaram a colapsar simultaneamente, engolindo cidades inteiras e mudando o mapa do mundo")
+ }
+ 
+ class ColapsoIA extends Catastrofe {
+   constructor() {
+     super("Colapso IA", "A inteligência artificial que controlava o mundo se voltou contra a humanidade. Nada mais é seguro.");
    }
-}
-
-module.exports = {
+ }
+ 
+ class RatosMutantes extends Catastrofe {
+   constructor() {
+     super("Ratos Mutantes", "Experimentos genéticos secretos deram errado. Agora, ratos do tamanho de ursos dominam o planeta Terra.");
+   }
+ }
+ 
+ class Terremoto extends Catastrofe {
+   constructor() {
+     super("Terremoto", "Falhas tectônicas ao redor do planeta começaram a colapsar simultaneamente, engolindo cidades inteiras e mudando o mapa do mundo.");
+   }
+ }
+ 
+ module.exports = {
    Catastrofe,
    Intergalactica,
-   InvasaoAlienigina,
+   InvasaoAlienigena,
    ColapsoIA,
    RatosMutantes,
    Terremoto
-}
+ };
+ 
