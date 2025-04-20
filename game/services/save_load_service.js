@@ -1,7 +1,7 @@
 const prompt = require('prompt-sync')()
 const fs = require('fs')
 const path = require('path')
-const Character = require('../models/character')
+const Character = require('../core/character') 
 
 function readPlayers() {
     const filePath = path.join(__dirname, '../data/players.json')
@@ -21,21 +21,21 @@ function savePlayers(character) {
 
 function newGame() {
     let name = prompt('Digite seu nome: ')
-    let character = new Character
+    let character = new Character()
     character.name = name
     savePlayers(character)
     console.log(`Bem-vindo, ${name}! Seu novo jogo começou!`)
 } //inicia um novo jogo
 
 function loadGame(callback) {
-    const players = callback
+    const players = callback()
 
     let name = prompt('Qual o seu nome, sobrevivente? ')
-    let found = true;
+    let found = false
 
     for (i = 0; i < players.length; i++) {
         if (players[i].name === name) {
-            console.log(`Bem-vindo de volta, ${player.name}!`)
+            console.log(`Bem-vindo de volta, ${players[i].name}!`)
             found = true
             break
         }

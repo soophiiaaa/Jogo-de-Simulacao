@@ -1,10 +1,10 @@
-const Character = require('../models/character')
-const Catastrofe = require('../event/event')
-const Items = require('../items/items')
+const Character = require('../core/character')
+const { Catastrofe, Intergalactica, InvasaoAlienigena, ColapsoIA, RatosMutantes, Terremoto } = require('../core/event')
+const Items = require('../core/items')
 
-let character = new Character
-let event = new Catastrofe
-let items = new Items
+let character = new Character()
+let event = new Catastrofe()
+let items = new Items()
 
 function badEnding(character, event) {
     console.log(`=================================`)
