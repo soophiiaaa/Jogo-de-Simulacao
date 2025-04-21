@@ -60,4 +60,4 @@ module.exports = {
   ColapsoIA,
   RatosMutantes,
   Terremoto
-};
+}

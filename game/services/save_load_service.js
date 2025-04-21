@@ -2,7 +2,7 @@ const prompt = require('prompt-sync')()
 const fs = require('fs')
 const path = require('path')
 
-const Character = require('../core/character') 
+const Character = require('../core/character')
 const { Catastrofe } = require('../core/event')
 
 function readPlayers() {
@@ -16,7 +16,9 @@ function savePlayers(character) {
     const filePath = path.join(__dirname, '../data/players.json')
     const players = readPlayers()
 
-    players.push(character)
+    if (!players.find(p => p.name === character.name)) {
+        players.push(character)
+    }    
 
     fs.writeFileSync(filePath, JSON.stringify(players, null, 2), 'utf-8')
 } //salva o jogador atual
@@ -27,7 +29,7 @@ function newGame() {
     const choose = require('../ui/choose')
 
     let name = prompt('Digite seu nome: ')
-    let character = new Character(name) 
+    let character = new Character(name)
 
     console.log(`Bem-vindo, ${name}! Seu novo jogo começou!`)
 
@@ -46,6 +48,10 @@ function newGame() {
 
 
     description(character, event, items, choose)
+
+    console.log(`===========================================================================`)
+    console.log('Ao chegar no bunker, escutam-se os gritos de desespero... só resta esperar.\nSegundo o que as autoridades disseram, precisamos esperar no máximo 30 dias até que ocorram os resgates.')
+    console.log(`===========================================================================`)
 } //inicia um novo jogo
 
 function loadGame(callback) {
@@ -75,7 +81,12 @@ function loadGame(callback) {
     if (!found) {
         console.log('Jogador não encontrado. Vamos começar um novo jogo!');
         newGame()
+        return
     }
+
+    console.log(`===========================================================================`)
+    console.log('Ao chegar no bunker, escutam-se os gritos de desespero... só resta esperar.\nSegundo o que as autoridades disseram, precisamos esperar no máximo 30 dias até que ocorram os resgates.')
+    console.log(`===========================================================================`)
 } //carrega um novo jogo
 
 module.exports = { readPlayers, savePlayers, newGame, loadGame }
