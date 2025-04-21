@@ -1,40 +1,17 @@
-[
-  {
-    "id": 0,
-    "name": "Sophia",
-    "resources": [
-      "Garrafa de Água"
-    ],
-    "days": 27
-  },
-  {
-    "id": 1,
-    "name": "Pedro",
-    "resources": [
-      "Kit de Primeiros Socorros",
-      "Garrafa de Água"
-    ],
-    "days": 12
-  },
-  {
-    "id": 11,
-    "name": "Maria",
-    "resources": [
-      "Garrafa de Água",
-      "Barra de Proteína",
-      "Comida Desidratada",
-      "Sopa Instantânea"
-    ],
-    "days": 0
-  },
-  {
-    "id": 64,
-    "name": "Sara",
-    "resources": [
-      "Mapa da Região",
-      "Barra de Proteína",
-      "Kit de Primeiros Socorros"
-    ],
-    "days": 0
-  }
-]
+{
+  "nome": "Jogador1",
+  "items": [
+    {
+      "id": 1,
+      "name": "Garrafa de Água",
+      "category": "food",
+      "quantity": 1
+    },
+    {
+      "id": 2,
+      "name": "Barra de Proteína",
+      "category": "food",
+      "quantity": 3
+    }
+  ]
+}
