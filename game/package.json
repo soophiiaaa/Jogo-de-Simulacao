@@ -1,0 +1,15 @@
+{
+  "name": "game",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "dev": "node game/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
