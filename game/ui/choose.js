@@ -1,43 +1,42 @@
 const Character = require('../core/character')
 const Items = require('../core/items')
 
-let items = new Items()
-
 function separateItems(input, items, character) {
-    character.resources = input.split(' ').map(item => parseInt(item.trim()))
+    let selected = input.split(' ').map(item => parseInt(item.trim()))
 
-    for (i = 0; i < character.resources.length; i++) {
-        for (j = 0; j < items.avaliableItems.length; j++) {
-            if (character.resources[i] === items.avaliableItems[j].id) {
-                character.resources[i] = items.avaliableItems[j].name
-            }
+    let names = selected.map(id => {
+        let found = items.avaliableItems.find(item => item.id === id)
+        return found ? found.name : 'Item desconhecido'
+    })
+
+    names.forEach(name => {
+        if (!character.resources.includes(name)) {
+            character.addResources(name)
         }
-    }
+    })
 }
 
-function chooseItems(character) {
+async function chooseItems(character, callback) {
     const readline = require('readline').createInterface({
         input: process.stdin,
         output: process.stdout
     }) //lê e exibe o que o usuário digitou
 
-    let timer
+    const items = new Items();
 
-    timer = setTimeout(() => {
+    let timer = setTimeout(() => {
         console.log('⏰ O tempo acaba e você corre para um local seguro...')
         readline.close()
+        callback(character)
     }, 60000)
-
-    console.log(items.avaliableItems)
 
     readline.question('Escolha o número dos seus itens: ', (input) => {
         separateItems(input, items, character)
         console.log(`Itens Selecionados: ${character.resources}`)
         clearTimeout(timer)
         readline.close()
+        callback(character)
     })
 }
-
-chooseItems(character)
 
 module.exports = chooseItems

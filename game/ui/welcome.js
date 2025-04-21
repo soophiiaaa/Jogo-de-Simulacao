@@ -18,18 +18,6 @@ function welcome() {
     if (choice === 2) {
         loadGame(readPlayers)
     }
-
-    let iniciar = prompt(`Pronto(a) para iniciar, (s/n)? `)
-
-    if (iniciar === 's') {
-        console.log(`Esse é o espírito! Aproveite a simulação!`)
-    }
-
-    if (iniciar === 'n') {
-        console.log(`Todos nós deveríamos estar preparados para o fim do mundo, vamos começar mesmo assim! Aproveite a simulação!`)
-    }
-
-    console.log(`=================================`)
 } //apresentação inicial para jogador
 
 welcome()
