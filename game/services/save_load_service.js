@@ -1,7 +1,9 @@
 const prompt = require('prompt-sync')()
 const fs = require('fs')
 const path = require('path')
+
 const Character = require('../core/character') 
+const { Catastrofe } = require('../core/event')
 
 function readPlayers() {
     const filePath = path.join(__dirname, '../data/players.json')
@@ -20,11 +22,30 @@ function savePlayers(character) {
 } //salva o jogador atual
 
 function newGame() {
+    const Items = require('../core/items')
+    const description = require('../ui/description')
+    const choose = require('../ui/choose')
+
     let name = prompt('Digite seu nome: ')
-    let character = new Character()
-    character.name = name
-    savePlayers(character)
+    let character = new Character(name) 
+
     console.log(`Bem-vindo, ${name}! Seu novo jogo começou!`)
+
+    let iniciar = prompt(`Pronto(a) para iniciar, (s/n)? `)
+
+    if (iniciar === 's') {
+        console.log(`Esse é o espírito! Aproveite a simulação!`)
+    }
+
+    if (iniciar === 'n') {
+        console.log(`Todos nós deveríamos estar preparados para o fim do mundo, vamos começar mesmo assim! Aproveite a simulação!`)
+    }
+
+    let event = new Catastrofe()
+    let items = new Items()
+
+
+    description(character, event, items, choose)
 } //inicia um novo jogo
 
 function loadGame(callback) {
@@ -41,10 +62,20 @@ function loadGame(callback) {
         }
     }
 
+    let iniciar = prompt(`Pronto(a) para iniciar, (s/n)? `)
+
+    if (iniciar === 's') {
+        console.log(`Esse é o espírito! Aproveite a simulação!`)
+    }
+
+    if (iniciar === 'n') {
+        console.log(`Todos nós deveríamos estar preparados para o fim do mundo, vamos começar mesmo assim! Aproveite a simulação!`)
+    }
+
     if (!found) {
         console.log('Jogador não encontrado. Vamos começar um novo jogo!');
         newGame()
     }
-}
+} //carrega um novo jogo
 
-module.exports = { readPlayers, newGame, loadGame }
+module.exports = { readPlayers, savePlayers, newGame, loadGame }
