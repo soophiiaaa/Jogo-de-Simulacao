@@ -16,6 +16,6 @@ function description(character, event, items, choose) {
     choose(character, () => {
         savePlayers(character)
     })
-}
+} //início de jogo com descrição do que acontece
 
 module.exports = description

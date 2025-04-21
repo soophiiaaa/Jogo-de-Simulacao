@@ -14,7 +14,7 @@ function separateItems(input, items, character) {
             character.addResources(name)
         }
     })
-}
+} //função que substitui o número do item escolhido pelo jogador para o nome
 
 async function chooseItems(character, callback) {
     const readline = require('readline').createInterface({
@@ -28,7 +28,7 @@ async function chooseItems(character, callback) {
         console.log('⏰ O tempo acaba e você corre para um local seguro...')
         readline.close()
         callback(character)
-    }, 60000)
+    }, 60000) //limite de 60 segundos para o jogador escolher seus itens
 
     readline.question('Escolha o número dos seus itens: ', (input) => {
         separateItems(input, items, character)
@@ -37,6 +37,6 @@ async function chooseItems(character, callback) {
         readline.close()
         callback(character)
     })
-}
+} //função para jogador escolher seus itens
 
 module.exports = chooseItems
