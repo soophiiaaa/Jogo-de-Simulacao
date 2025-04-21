@@ -1,16 +1,17 @@
+// Importação das bibliotecas necessárias
 const fs = require('fs');
 const prompt = require('prompt-sync')();
 const Character = require('../core/character');
 const Items = require("../core/items");
 
 const path = require('path');
-const arquivoPlayer = path.join(__dirname, '../data/players.json');
 
-// const arquivoPlayer = "../data/player.json";
+// Caminho para o arquivo do jogador e histórico
+const arquivoPlayer = path.join(__dirname, '../data/players.json');
 const arquivoHist = 'historico.json';
 
+// Inicialização do histórico
 let historico = [];
-
 if (fs.existsSync(arquivoHist)) {
     try {
         historico = JSON.parse(fs.readFileSync(arquivoHist, "utf-8"));
@@ -20,6 +21,7 @@ if (fs.existsSync(arquivoHist)) {
     }
 }
 
+// Definindo os eventos disponíveis no jogo
 const eventoA = [
     { evento: "Encontro com um estranho", opcoes: ["Deixar entrar", "Ignorar"] },
     { evento: "Falha no sistema de ventilação", opcoes: ["Consertar", "Ignorar"] },
@@ -32,12 +34,13 @@ const eventoA = [
     { evento: "Fome extrema", opcoes: ["Racionar", "Sair para procurar comida"] }
 ];
 
+// Função para gerar eventos aleatórios durante os dias do jogo
 function gerarEventos(dias, eventoA) {
     const eventosG = [];
-    const total = Math.floor(Math.random() * (10 - 5 + 1)) + 5;
+    const total = Math.max(Math.floor(Math.random() * (10 - 5 + 1)) + 5, 1);  // Garante que tenha pelo menos 1 evento
 
     const diaComEvento = new Set();
-    while (diaComEvento.size < total) {
+    while (diaComEvento.size < total && diaComEvento.size < dias.length) {  // Garante que os eventos não ultrapassem os dias disponíveis
         const diaAleatorio = dias[Math.floor(Math.random() * dias.length)];
         diaComEvento.add(diaAleatorio);
     }
@@ -50,7 +53,10 @@ function gerarEventos(dias, eventoA) {
     return eventosG;
 }
 
+// Função para apresentar as escolhas do evento
 function apresentarEscolha(dia, evento) {
+    console.log("⚠️  ENTROU EM apresentarEscolha");
+    console.log("Evento recebido:", evento);
     console.log(`Dia: ${dia}`);
     console.log(`Evento: ${evento.evento}`);
     evento.opcoes.forEach((opcao, index) => {
@@ -60,13 +66,14 @@ function apresentarEscolha(dia, evento) {
     const escolha = prompt("Escolha uma opção (1 ou 2): ");
     console.log(`Você escolheu: ${evento.opcoes[escolha - 1]}`);
 
+    // Feedback sobre a escolha
     if (escolha == 1) {
         console.log("Você tomou a melhor decisão!");
     } else {
         console.log("Você tomou uma decisão ruim!");
     }
 
-    //alterando os itens no inventário com base na escolha
+    // Alteração do inventário com base na escolha do jogador
     const playerData = JSON.parse(fs.readFileSync(arquivoPlayer, "utf-8"));
     const items = new Items();
 
@@ -102,6 +109,7 @@ function apresentarEscolha(dia, evento) {
     registrarEvento(dia, evento, escolha);
 }
 
+// Função para registrar eventos no histórico
 function registrarEvento(dia, evento, escolha) {
     let registroAtual = [];
     if (fs.existsSync(arquivoHist)) {
@@ -113,18 +121,36 @@ function registrarEvento(dia, evento, escolha) {
     fs.writeFileSync(arquivoHist, JSON.stringify(registroAtual, null, 2));
 }
 
+// Carrega os dados do jogador e cria a instância do personagem
 const playerData = JSON.parse(fs.readFileSync(arquivoPlayer, 'utf-8'));
-const character = new Character(playerData.name);
+const character = new Character(playerData.nome);
 
+// Ajuste de dias (chame apenas uma vez ou ajuste conforme a necessidade)
 character.incrementDays();
+console.log("Dias sobrevividos:", character.days);
 
-// Gerar eventos aleatórios e apresentar as escolhas
-// const eventosGerados = gerarEventos(dias, eventoA);
-// eventosGerados.forEach(({ dia, evento }) => {
-//     apresentarEscolha(dia, evento);
-// });
+// Gerar eventos se houver dias suficientes
+if (character.days > 0) {
+    const diasDisponiveis = Array.from({ length: character.days }, (_, i) => i + 1);
+    console.log("Dias disponíveis para eventos:", diasDisponiveis);
 
-const eventosGerados = gerarEventos(character.days, eventoA); // Passando o número de dias do jogador
-eventosGerados.forEach(({ dia, evento }) => {
-    apresentarEscolha(dia, evento);
-})
+    // Gerar eventos para os dias disponíveis
+    const eventosGerados = gerarEventos(diasDisponiveis, eventoA);
+    console.log("Eventos gerados:", eventosGerados);
+
+    if (eventosGerados.length === 0) {
+        console.log("Nenhum evento gerado, tente aumentar o número de dias.");
+    } else {
+        // Rodar os eventos
+        eventosGerados.forEach(({ dia, evento }) => {
+            console.log(">> Evento do dia", dia, evento); // DEBUG!
+            apresentarEscolha(dia, evento);
+        });
+    }
+}
+
+module.exports = {
+    gerarEventos,
+    apresentarEscolha,
+    registrarEvento
+};
