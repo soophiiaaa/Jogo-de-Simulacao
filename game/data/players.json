@@ -1,17 +1,7 @@
 {
-  "nome": "Jogador1",
+  "nome": "Nome do Jogador",
   "items": [
-    {
-      "id": 1,
-      "name": "Garrafa de Água",
-      "category": "food",
-      "quantity": 1
-    },
-    {
-      "id": 2,
-      "name": "Barra de Proteína",
-      "category": "food",
-      "quantity": 3
-    }
+    { "name": "Garrafa de Água", "quantity": 5 },
+    { "name": "Barra de Proteína", "quantity": 3 }
   ]
 }
