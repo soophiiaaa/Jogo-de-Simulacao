@@ -1,1 +1,51 @@
-[]
+[
+  {
+    "dia": 8,
+    "evento": "Colapso do estoque de água",
+    "escolha": "Sair para procurar água"
+  },
+  {
+    "dia": 24,
+    "evento": "Encontro com um estranho",
+    "escolha": "Deixar entrar"
+  },
+  {
+    "dia": 9,
+    "evento": "Sistema de energia falhando",
+    "escolha": "Desligar para economizar energia"
+  },
+  {
+    "dia": 6,
+    "evento": "Colapso do estoque de água",
+    "escolha": "Procurar uma solução"
+  },
+  {
+    "dia": 7,
+    "evento": "Falha no sistema de ventilação",
+    "escolha": "Consertar"
+  },
+  {
+    "dia": 11,
+    "evento": "Encontro com um estranho",
+    "escolha": "Deixar entrar"
+  },
+  {
+    "dia": 20,
+    "evento": "Sinal de rádio de socorro",
+    "escolha": "Responder"
+  },
+  {
+    "dia": 29,
+    "evento": "Um animal começa a atacar a porta",
+    "escolha": "Por algo pesado"
+  },
+  {
+    "dia": 30,
+    "evento": "Fome extrema",
+    "escolha": "Sair para procurar comida"
+  },
+  {
+    "dia": 1,
+    "evento": "Mensagem enigmática"
+  }
+]

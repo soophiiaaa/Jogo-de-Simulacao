@@ -15,5 +15,16 @@
       "Garrafa de Água"
     ],
     "days": 12
+  },
+  {
+    "id": 11,
+    "name": "Maria",
+    "resources": [
+      "Garrafa de Água",
+      "Barra de Proteína",
+      "Comida Desidratada",
+      "Sopa Instantânea"
+    ],
+    "days": 0
   }
 ]
