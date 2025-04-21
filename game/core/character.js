@@ -16,6 +16,10 @@ class Character {
         this.days++
     } //adiciona mais um dia sobrevivido pelo jogador
 
+    addResources(resource) {
+        this.resources.push(resource)
+    }
+
     characterInformations() {
         return `Nome do Jogador: ${this.name}\nRecursos Disponíveis: ${this.resources}\nDias Sobrevividos: ${this.days}`
     } //retorna as informações do jogador
