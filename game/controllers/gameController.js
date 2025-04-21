@@ -1,7 +1,10 @@
 const Character = require('../core/character')
 const Event = require('../core/event')
-const { readPlayers, newGame, loadGame } = require('../services/save_load_service')
-const end_game_service = require('../services/end_game_service')
+const Items = require('../core/items')
 
-let character = new Character
+const { readPlayers, savePlayers, newGame, loadGame } = require('../services/save_load_service')
+const { badEnding, goodEnding, finalConditions } = require('../services/end_game_service')
 
+const welcome = require('../ui/welcome')
+const description = require('../ui/description')
+const choose = require('../ui/choose')

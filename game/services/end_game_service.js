@@ -33,4 +33,3 @@ function finalConditions(character, event, badEnding, goodEnding) {
 }
 
 module.exports = { badEnding, goodEnding, finalConditions }
-
