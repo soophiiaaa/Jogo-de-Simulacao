@@ -8,14 +8,17 @@ const choose = require('./choose')
 
 let event = new Catastrofe()
 
-function description(character, event, items, choose) {
-    console.log(`${character.name} estava tranquilo(a) em sua casa quando de repente os jornais são bombardeados com a seguinte notícia:\n"ALERTA! AVISO DE ${event.nome}!\nBUSQUEM ABRIGO O MAIS RÁPIDO POSSÍVEL! GUARDEM SUPRIMENTOS E ITENS DE SOBREVIVÊNCIA!`)
+async function description(character, event, items, choose) {
+    console.log(`${character.name} estava tranquilo(a) em sua casa quando de repente os jornais são bombardeados com a seguinte notícia:\n"ALERTA! AVISO DE ${event.nome}!\nBUSQUEM ABRIGO O MAIS RÁPIDO POSSÍVEL! GUARDEM SUPRIMENTOS E ITENS DE SOBREVIVÊNCIA!"`)
     console.log(`De repente, tudo fica de cabeça pra baixo! Você olha ao redor e encontra os seguintes itens:`)
-    console.log(items.avaliableItems)
 
-    choose(character, () => {
+    items.avaliableItems.forEach(item => {
+        console.log(`${item.id}. ${item.name} - Categoria: ${item.category}`);
+    })
+
+    await choose(character, () => {
         savePlayers(character)
     })
-} //início de jogo com descrição do que acontece
+}
 
 module.exports = description

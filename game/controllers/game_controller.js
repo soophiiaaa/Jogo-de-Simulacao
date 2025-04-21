@@ -1,6 +1,6 @@
 const prompt = require('prompt-sync')()
 const { readPlayers, savePlayers, newGame, loadGame } = require('../services/save_load_service')
-const{ gerarEventos, iniciarJogo } = require('./bunker_controller')
+const{ iniciarJogo } = require('./bunker_controller')
 
 function startGame() {
     console.log(`=====💥O MUNDO EM COLAPSO!💥=====`)
@@ -18,7 +18,8 @@ function startGame() {
     }
 
     if (choice === 2) {
-        loadGame(readPlayers)
+        const players = readPlayers()
+        loadGame(players)
         iniciarJogo()
     }
 }

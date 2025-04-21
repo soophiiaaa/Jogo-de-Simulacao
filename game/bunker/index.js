@@ -61,6 +61,12 @@ function apresentarEscolha(dia, evento) {
     })
 
     const escolha = parseInt(prompt("Escolha uma opção (1 ou 2): "))
+ 
+    while (![1, 2].includes(escolha)) {
+        console.log("Escolha inválida! Por favor, escolha 1 ou 2.")
+        escolha = parseInt(prompt("Escolha uma opção (1 ou 2): "))
+    }
+ 
     console.log(`Você escolheu: ${evento.opcoes[escolha - 1]}`)
 
     if (escolha == 1) {

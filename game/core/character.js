@@ -8,7 +8,7 @@ class Character {
         this.days = 0
     }
 
-    avaliableResources() {
+    availableResources() {
         return this.resources
     } //retorna os recursos disponíveis do jogador
 

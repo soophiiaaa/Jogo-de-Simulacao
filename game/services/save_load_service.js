@@ -14,16 +14,19 @@ function readPlayers() {
 
 function savePlayers(character) {
     const filePath = path.join(__dirname, '../data/players.json')
-    const players = readPlayers()
 
-    if (!players.find(p => p.name === character.name)) {
-        players.push(character)
-    }    
+    let players = []
+    if (fs.existsSync(filePath)) {
+        const data = fs.readFileSync(filePath, 'utf-8')
+        players = JSON.parse(data)
+    }
+
+    players.push(character)
 
     fs.writeFileSync(filePath, JSON.stringify(players, null, 2), 'utf-8')
 } //salva o jogador atual
 
-function newGame() {
+async function newGame() {
     const Items = require('../core/items')
     const description = require('../ui/description')
     const choose = require('../ui/choose')
@@ -33,25 +36,11 @@ function newGame() {
 
     console.log(`Bem-vindo, ${name}! Seu novo jogo começou!`)
 
-    let iniciar = prompt(`Pronto(a) para iniciar, (s/n)? `)
-
-    if (iniciar === 's') {
-        console.log(`Esse é o espírito! Aproveite a simulação!`)
-    }
-
-    if (iniciar === 'n') {
-        console.log(`Todos nós deveríamos estar preparados para o fim do mundo, vamos começar mesmo assim! Aproveite a simulação!`)
-    }
-
     let event = new Catastrofe()
     let items = new Items()
 
-
-    description(character, event, items, choose)
-
-    console.log(`===========================================================================`)
-    console.log('Ao chegar no bunker, escutam-se os gritos de desespero... só resta esperar.\nSegundo o que as autoridades disseram, precisamos esperar no máximo 30 dias até que ocorram os resgates.')
-    console.log(`===========================================================================`)
+    await description(character, event, items, choose)
+    savePlayers(character)
 } //inicia um novo jogo
 
 function loadGame(callback) {
@@ -83,10 +72,6 @@ function loadGame(callback) {
         newGame()
         return
     }
-
-    console.log(`===========================================================================`)
-    console.log('Ao chegar no bunker, escutam-se os gritos de desespero... só resta esperar.\nSegundo o que as autoridades disseram, precisamos esperar no máximo 30 dias até que ocorram os resgates.')
-    console.log(`===========================================================================`)
 } //carrega um novo jogo
 
 module.exports = { readPlayers, savePlayers, newGame, loadGame }

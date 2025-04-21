@@ -1,7 +1,44 @@
-{
-  "nome": "Nome do Jogador",
-  "items": [
-    { "name": "Garrafa de Água", "quantity": 5 },
-    { "name": "Barra de Proteína", "quantity": 3 }
-  ]
-}
+[
+  {
+    "id": 0,
+    "name": "Sophia",
+    "resources": [],
+    "days": 0
+  },
+  {
+    "id": 54,
+    "name": "Sara",
+    "resources": [],
+    "days": 0
+  },
+  {
+    "id": 9,
+    "name": "Angella",
+    "resources": [],
+    "days": 0
+  },
+  {
+    "id": 21,
+    "name": "Mariana",
+    "resources": [],
+    "days": 0
+  },
+  {
+    "id": 3,
+    "name": "Jussara",
+    "resources": [],
+    "days": 0
+  },
+  {
+    "id": 73,
+    "name": "luana",
+    "resources": [],
+    "days": 0
+  },
+  {
+    "id": 89,
+    "name": "Clara",
+    "resources": [],
+    "days": 0
+  }
+]

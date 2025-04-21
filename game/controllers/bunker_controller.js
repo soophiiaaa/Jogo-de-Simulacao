@@ -59,6 +59,12 @@ function apresentarEscolha(dia, evento) {
     })
 
     const escolha = parseInt(prompt("Escolha uma opção (1 ou 2): "))
+
+    while (![1, 2].includes(escolha)) {
+        console.log("Escolha inválida! Por favor, escolha 1 ou 2.");
+        escolha = parseInt(prompt("Escolha uma opção (1 ou 2): "));
+    }
+
     console.log(`Você escolheu: ${evento.opcoes[escolha - 1]}`)
 
     if (escolha === 1) {
@@ -74,7 +80,7 @@ function apresentarEscolha(dia, evento) {
     const items = new Items()
 
     //verificando a escolha e ajustando o inventário
-    if (evento.evento === "Colapso do estoque de água" && escolha === '2') {
+    if (evento.evento === "Colapso do estoque de água" && escolha === 2) {
         const aguaIndex = playerData.items.findIndex(item => item.name === "Garrafa de Água")
         if (aguaIndex !== -1) {
             playerData.items[aguaIndex].quantity -= 1
@@ -85,7 +91,7 @@ function apresentarEscolha(dia, evento) {
         } else {
             console.log("Você não tem água suficiente para usar.")
         }
-    } else if (evento.evento === "Fome extrema" && escolha === '2') {
+    } else if (evento.evento === "Fome extrema" && escolha === 2) {
         const comidaIndex = playerData.items.findIndex(item => item.name === 'Barra de Proteína')
         if (comidaIndex !== -1) {
             playerData.items[comidaIndex].quantity -= 1
