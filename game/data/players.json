@@ -26,5 +26,15 @@
       "Sopa Instantânea"
     ],
     "days": 0
+  },
+  {
+    "id": 64,
+    "name": "Sara",
+    "resources": [
+      "Mapa da Região",
+      "Barra de Proteína",
+      "Kit de Primeiros Socorros"
+    ],
+    "days": 0
   }
 ]

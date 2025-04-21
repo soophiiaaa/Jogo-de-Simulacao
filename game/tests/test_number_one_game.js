@@ -23,3 +23,5 @@ catch (error) {
     console.error('Erro de execução')
     console.error(error.message)
 }
+
+//arquivo de teste inicial com arquivos antigos
