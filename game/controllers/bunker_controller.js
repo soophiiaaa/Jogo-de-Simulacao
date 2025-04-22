@@ -1,13 +1,15 @@
-const fs = require("fs");
-const path = require("path");
-const prompt = require("prompt-sync")();
+const fs = require("fs"); //métodos filesystem (sistemas de arquivo) - leitura e escrita
+const path = require("path"); //importa ferramentas para caminhos de arquivo
+const prompt = require("prompt-sync")(); //standard input para o usuário
 
-const Character = require("../core/character");
-const Items = require("../core/items");
+const Character = require("../core/character"); //cria um objeto personagem
+const Items = require("../core/items"); //cria um objeto com uma lista de itens disponíveis
 
+//encontra o caminho para o arquivo de dados do jogador
 const arquivoPlayer = path.join(__dirname, "../data/players.json");
 const arquivoHist = path.join(__dirname, "../data/historico.json");
 
+//variável auxiliar para guardar o histórico de ações do jogador
 let historico = [];
 
 // Função para garantir que o arquivo de histórico existe e seja lido corretamente
@@ -22,8 +24,10 @@ function carregarHistorico() {
   }
 }
 
+// executa a função para carregar o histórico
 carregarHistorico();
 
+// dicionário de possíveis eventos
 const eventoA = [
   { evento: "Encontro com um estranho", opcoes: ["Deixar entrar", "Ignorar"] },
   {
