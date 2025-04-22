@@ -10,14 +10,19 @@ const arquivoHist = path.join(__dirname, '../data/historico.json')
 
 let historico = []
 
-if (fs.existsSync(arquivoHist)) {
-    try {
-        historico = JSON.parse(fs.readFileSync(arquivoHist, "utf-8"))
-    } catch (error) {
-        console.log("Erro ao ler o arquivo JSON", error)
-        historico = []
+// Função para garantir que o arquivo de histórico existe e seja lido corretamente
+function carregarHistorico() {
+    if (fs.existsSync(arquivoHist)) {
+        try {
+            historico = JSON.parse(fs.readFileSync(arquivoHist, "utf-8"))
+        } catch (error) {
+            console.log("Erro ao ler o arquivo JSON", error)
+            historico = []
+        }
     }
 }
+
+carregarHistorico()
 
 const eventoA = [
     { evento: "Encontro com um estranho", opcoes: ["Deixar entrar", "Ignorar"] },
@@ -31,6 +36,7 @@ const eventoA = [
     { evento: "Fome extrema", opcoes: ["Racionar", "Sair para procurar comida"] }
 ]
 
+// Função para gerar eventos aleatórios
 function gerarEventos(dias, eventoA) {
     const eventosG = []
     const total = Math.floor(Math.random() * (10 - 5 + 1)) + 5
@@ -50,6 +56,7 @@ function gerarEventos(dias, eventoA) {
     return eventosG
 }
 
+// Função para apresentar a escolha ao jogador
 function apresentarEscolha(dia, evento) {
     console.log(`Dia: ${dia}`)
     console.log(`Evento: ${evento.evento}`)
@@ -67,25 +74,17 @@ function apresentarEscolha(dia, evento) {
 
     console.log(`Você escolheu: ${evento.opcoes[escolha - 1]}`)
 
-    if (escolha === 1) {
-        console.log("Você tomou a melhor decisão!")
-    } 
-    
-    if (escolha === 2) {
-        console.log("Você tomou uma decisão ruim!")
-    }
-
-    //alterando os itens no inventário com base na escolha
+    // Alterando os itens no inventário com base na escolha
     const playerData = JSON.parse(fs.readFileSync(arquivoPlayer, "utf-8"))
     const items = new Items()
 
-    //verificando a escolha e ajustando o inventário
+    // Verificando a escolha e ajustando o inventário
     if (evento.evento === "Colapso do estoque de água" && escolha === 2) {
         const aguaIndex = playerData.items.findIndex(item => item.name === "Garrafa de Água")
         if (aguaIndex !== -1) {
             playerData.items[aguaIndex].quantity -= 1
             if (playerData.items[aguaIndex].quantity <= 0) {
-                playerData.items.splice(aguaIndex, 1) //remove o item se a quantidade chegar a 0
+                playerData.items.splice(aguaIndex, 1) // Remove o item se a quantidade chegar a 0
             }
             console.log("Você usou 1 unidade de água.")
         } else {
@@ -96,7 +95,7 @@ function apresentarEscolha(dia, evento) {
         if (comidaIndex !== -1) {
             playerData.items[comidaIndex].quantity -= 1
             if (playerData.items[comidaIndex].quantity <= 0) {
-                playerData.items.splice(comidaIndex, 1) //remove item se a quantidade chegar a 0
+                playerData.items.splice(comidaIndex, 1) // Remove item se a quantidade chegar a 0
             }
             console.log('Você usou uma barra de proteína para tentar saciar sua fome!')
         } else {
@@ -104,24 +103,20 @@ function apresentarEscolha(dia, evento) {
         }
     }
 
-    //salva o novo estado do inventário no player.json
+    // Salva o novo estado do inventário no player.json
     fs.writeFileSync(arquivoPlayer, JSON.stringify(playerData, null, 2))
 
-    //registrar o evento e a escolha no histórico
+    // Registra o evento e a escolha no histórico
     registrarEvento(dia, evento, escolha)
 }
 
+// Função para registrar o evento no histórico
 function registrarEvento(dia, evento, escolha) {
-    let registroAtual = []
-    if (fs.existsSync(arquivoHist)) {
-        const dados = fs.readFileSync(arquivoHist, "utf-8")
-        registroAtual = JSON.parse(dados)
-    }
-
-    registroAtual.push({ dia, evento: evento.evento, escolha: evento.opcoes[escolha - 1] })
-    fs.writeFileSync(arquivoHist, JSON.stringify(registroAtual, null, 2))
+    historico.push({ dia, evento: evento.evento, escolha: evento.opcoes[escolha - 1] })
+    fs.writeFileSync(arquivoHist, JSON.stringify(historico, null, 2))
 }
 
+// Função para iniciar o jogo
 function iniciarJogo() {
     try {
         const playerData = JSON.parse(fs.readFileSync(arquivoPlayer, 'utf-8'))
@@ -141,6 +136,6 @@ function iniciarJogo() {
     }
 }
 
-console.log(iniciarJogo())
+iniciarJogo()
 
 module.exports = { gerarEventos, iniciarJogo }

@@ -18,9 +18,7 @@ function startGame() {
     }
 
     if (choice === 2) {
-        const players = readPlayers()
-        loadGame(players)
-        iniciarJogo()
+        console.log("A opção 'Carregar Jogo' está em manutenção. Tente novamente mais tarde.")
     }
 }
 
