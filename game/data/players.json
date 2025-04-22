@@ -50,5 +50,16 @@
       "Sopa Instantânea"
     ],
     "days": 0
+  },
+  {
+    "id": 93,
+    "name": "Lucas",
+    "resources": [
+      "Garrafa de Água",
+      "Barra de Proteína",
+      "Comida Desidratada",
+      "Sopa Instantânea"
+    ],
+    "days": 0
   }
 ]
