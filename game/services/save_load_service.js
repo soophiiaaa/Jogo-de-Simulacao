@@ -36,7 +36,7 @@ async function newGame() {
 
     console.log(`Bem-vindo, ${name}! Seu novo jogo começou!`)
 
-    let event = new Catastrofe()
+    let event = Catastrofe.gerarDesastreAleatorio()
     let items = new Items()
 
     await description(character, event, items, choose)
