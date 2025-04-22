@@ -1,4 +1,4 @@
-const readline = require('readline')
+const prompt = require('prompt-sync')()
 
 const Character = require('../core/character')
 const Items = require('../core/items')
@@ -18,35 +18,13 @@ function separateItems(input, items, character) {
     })
 } //função que substitui o número do item escolhido pelo jogador para o nome
 
-async function chooseItems(character, callback) {
-    const rl = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout
-    })
-
+function chooseItems(character, callback) {
     const items = new Items()
 
-    let timedOut = false
-
-    let timer = setTimeout(() => {
-        console.log('⏰ O tempo acaba e você corre para um local seguro...')
-        timedOut = true
-        rl.close()
-        callback(character)
-    }, 60000) // Limite de 60 segundos para o jogador escolher seus itens
-
-    await new Promise((resolve) => {
-        rl.question('Escolha o número dos seus itens: ', (input) => {
-            if (!timedOut) {
-                separateItems(input, items, character)
-                console.log(`Itens Selecionados: ${character.resources.join(', ')}`)
-                clearTimeout(timer)
-                rl.close()
-                callback(character)
-            }
-            resolve()
-        })
-    })
+    let input = prompt('Escolha o número dos seus itens (separados por espaço): ')
+    separateItems(input, items, character)
+    console.log(`Itens Selecionados: ${character.resources.join(', ')}`)
+    callback(character)
 }
 
 module.exports = chooseItems

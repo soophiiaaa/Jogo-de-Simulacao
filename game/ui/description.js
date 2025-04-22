@@ -16,7 +16,7 @@ async function description(character, event, items, choose) {
         console.log(`${item.id}. ${item.name} - Categoria: ${item.category}`);
     })
 
-    await choose(character, () => {
+    choose(character, () => {
         savePlayers(character)
     })
 }

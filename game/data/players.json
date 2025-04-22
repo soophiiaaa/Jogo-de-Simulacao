@@ -40,5 +40,15 @@
     "name": "Clara",
     "resources": [],
     "days": 0
+  },
+  {
+    "id": 12,
+    "name": "lucas",
+    "resources": [
+      "Garrafa de Água",
+      "Barra de Proteína",
+      "Sopa Instantânea"
+    ],
+    "days": 0
   }
 ]
