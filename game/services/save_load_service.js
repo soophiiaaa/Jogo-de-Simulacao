@@ -21,7 +21,9 @@ function savePlayers(character) {
         players = JSON.parse(data)
     }
 
-    players.push(character)
+    if (!players.some(player => player.name === character.name)) {
+        players.push(character)
+    }
 
     fs.writeFileSync(filePath, JSON.stringify(players, null, 2), 'utf-8')
 } //salva o jogador atual
@@ -49,7 +51,7 @@ function loadGame(callback) {
     let name = prompt('Qual o seu nome, sobrevivente? ')
     let found = false
 
-    for (i = 0; i < players.length; i++) {
+    for (let i = 0; i < players.length; i++) {
         if (players[i].name === name) {
             console.log(`Bem-vindo de volta, ${players[i].name}!`)
             found = true

@@ -1,12 +1,12 @@
 const fs = require('fs')
+const path = require('path')
 const prompt = require('prompt-sync')()
+
 const Character = require('../core/character')
 const Items = require("../core/items")
 
-const path = require('path')
 const arquivoPlayer = path.join(__dirname, '../data/players.json')
-
-const arquivoHist = 'historico.json'
+const arquivoHist = path.join(__dirname, '../data/historico.json')
 
 let historico = []
 
@@ -58,7 +58,7 @@ function apresentarEscolha(dia, evento) {
         console.log(`${index + 1}: ${opcao}`)
     })
 
-    const escolha = parseInt(prompt("Escolha uma opção (1 ou 2): "))
+    let escolha = parseInt(prompt("Escolha uma opção (1 ou 2): "))
 
     while (![1, 2].includes(escolha)) {
         console.log("Escolha inválida! Por favor, escolha 1 ou 2.");
@@ -125,7 +125,7 @@ function registrarEvento(dia, evento, escolha) {
 function iniciarJogo() {
     try {
         const playerData = JSON.parse(fs.readFileSync(arquivoPlayer, 'utf-8'))
-        const character = new Character(playerData.name)
+        const character = new Character(playerData.nome)
 
         character.incrementDays()
 
@@ -140,5 +140,7 @@ function iniciarJogo() {
         console.log("Erro ao iniciar o jogo:", error)
     }
 }
+
+console.log(iniciarJogo())
 
 module.exports = { gerarEventos, iniciarJogo }

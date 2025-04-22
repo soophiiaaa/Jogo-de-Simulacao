@@ -18,7 +18,7 @@ class Character {
 
     addResources(resource) {
         this.resources.push(resource)
-    }
+    } //adicionar recursos para os jogadores
 
     characterInformations() {
         return `Nome do Jogador: ${this.name}\nRecursos Disponíveis: ${this.resources}\nDias Sobrevividos: ${this.days}`

@@ -7,7 +7,7 @@ function startGame() {
     console.log(`Olá! Bem-vindo(a) ao nosso jogo!`)
     console.log(`=================================`)
     console.log(`1 - Novo Jogo`)
-    console.log(`2 - Carregar Jogo`)
+    console.log(`2 - Carregar Jogo (em manutenção)`)
     console.log(`=================================`)
 
     let choice = parseInt(prompt('Escolha uma opção: '))

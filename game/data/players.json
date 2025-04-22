@@ -6,42 +6,6 @@
     "days": 0
   },
   {
-    "id": 54,
-    "name": "Sara",
-    "resources": [],
-    "days": 0
-  },
-  {
-    "id": 9,
-    "name": "Angella",
-    "resources": [],
-    "days": 0
-  },
-  {
-    "id": 21,
-    "name": "Mariana",
-    "resources": [],
-    "days": 0
-  },
-  {
-    "id": 3,
-    "name": "Jussara",
-    "resources": [],
-    "days": 0
-  },
-  {
-    "id": 73,
-    "name": "luana",
-    "resources": [],
-    "days": 0
-  },
-  {
-    "id": 89,
-    "name": "Clara",
-    "resources": [],
-    "days": 0
-  },
-  {
     "id": 12,
     "name": "lucas",
     "resources": [
@@ -52,13 +16,54 @@
     "days": 0
   },
   {
-    "id": 93,
-    "name": "Lucas",
+    "id": 98,
+    "name": "Lauren",
+    "resources": [
+      "Garrafa de Água",
+      "Barra de Proteína",
+      "Comida Desidratada"
+    ],
+    "days": 0
+  },
+  {
+    "id": 81,
+    "name": "Amanda",
+    "resources": [
+      "Lanterna",
+      "Comida Desidratada",
+      "Kit de Primeiros Socorros",
+      "Antisséptico"
+    ],
+    "days": 0
+  },
+  {
+    "id": 36,
+    "name": "Tulio",
     "resources": [
       "Garrafa de Água",
       "Barra de Proteína",
       "Comida Desidratada",
-      "Sopa Instantânea"
+      "Item desconhecido"
+    ],
+    "days": 0
+  },
+  {
+    "id": 65,
+    "name": "Agora vai",
+    "resources": [
+      "Item desconhecido",
+      "Lanterna",
+      "Antisséptico"
+    ],
+    "days": 0
+  },
+  {
+    "id": 50,
+    "name": "Mikaelson",
+    "resources": [
+      "Garrafa de Água",
+      "Barra de Proteína",
+      "Comida Desidratada"
     ],
     "days": 0
   }
