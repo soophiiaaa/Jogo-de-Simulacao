@@ -1,12 +1,11 @@
 const {
-Catastrofe,
-Intergalactica,
-InvasaoAlienigena,
-ColapsoIA,
-RatosMutantes,
-Terremoto
-} = require ("./event")
+  Catastrofe,
+  Intergalactica,
+  InvasaoAlienigena,
+  ColapsoIA,
+  RatosMutantes,
+  Terremoto,
+} = require("./event");
 
-const catastrofe = Catastrofe.gerarDesastreAleatorio()
-catastrofe.introducao()
- 
+const catastrofe = Catastrofe.gerarDesastreAleatorio();
+catastrofe.introducao();
