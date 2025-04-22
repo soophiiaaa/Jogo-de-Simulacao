@@ -1,6 +1,6 @@
 const prompt = require('prompt-sync')()
 const { readPlayers, savePlayers, newGame, loadGame } = require('../services/save_load_service')
-const{ iniciarJogo } = require('./bunker_controller')
+//const{ iniciarJogo } = require('./bunker_controller')
 
 function startGame() {
     console.log(`=====💥O MUNDO EM COLAPSO!💥=====`)
@@ -12,16 +12,18 @@ function startGame() {
 
     let choice = parseInt(prompt('Escolha uma opção: '))
 
+    while (choice !== 1 && choice !== 2) {
+        choice = parseInt(prompt('Escolha uma opção: '))
+    }
+
     if (choice === 1) {
         newGame()
-        iniciarJogo()
+        //iniciarJogo()
     }
 
     if (choice === 2) {
         console.log("A opção 'Carregar Jogo' está em manutenção. Tente novamente mais tarde.")
     }
 }
-
-startGame()
 
 module.exports = startGame
