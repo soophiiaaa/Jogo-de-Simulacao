@@ -4,5 +4,13 @@
     "name": "Sophia",
     "resources": [],
     "days": 0
+  },
+  {
+    "id": 27,
+    "name": "e",
+    "resources": [
+      "Garrafa de Água"
+    ],
+    "days": 0
   }
 ]
