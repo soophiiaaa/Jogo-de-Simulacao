@@ -1,12 +1,13 @@
 const id = require("./id");
 
 class Character {
-  constructor(name) {
+  constructor(name, resources = [], days = 0) {
     this.id = id();
     this.name = name;
-    this.resources = [];
-    this.days = 0;
-  }
+    this.resources = resources;
+    this.days = days;
+  } //construtor da classe Character, que representa o jogador no jogo
+  //com id, nome, recursos e dias sobrevividos
 
   availableResources() {
     return this.resources;

@@ -40,14 +40,21 @@ const eventoA = [
   { evento: "Fome extrema", opcoes: ["Racionar", "Sair para procurar comida"] },
 ];
 
-// Função para gerar eventos aleatórios com base nos dias do personagem
 function gerarEventos(dias, eventoA) {
   const eventosG = [];
-  const total = Math.floor(Math.random() * (10 - 5 + 1)) + 5; // Gera entre 5 e 10 eventos
+  const total = Math.floor(Math.random() * (10 - 5 + 1)) + 5; // Entre 5 e 10 eventos
   const diaComEvento = new Set();
 
+  // Filtra os dias para só considerar a partir do dia 3
+  const diasValidos = dias.filter((dia) => dia >= 3);
+
+  if (diasValidos.length < total) {
+    console.log("Dias disponíveis insuficientes para gerar eventos.");
+    return eventosG;
+  }
+
   while (diaComEvento.size < total) {
-    const diaAleatorio = dias[Math.floor(Math.random() * dias.length)];
+    const diaAleatorio = diasValidos[Math.floor(Math.random() * diasValidos.length)];
     diaComEvento.add(diaAleatorio);
   }
 
@@ -59,7 +66,7 @@ function gerarEventos(dias, eventoA) {
   return eventosG;
 }
 
-// Função que apresenta um evento e coleta a escolha do jogador
+// Função para apresentar o evento e registrar a escolha do jogador
 function apresentarEscolha(dia, evento) {
   console.log(`Dia: ${dia}`);
   console.log(`Evento: ${evento.evento}`);
@@ -81,11 +88,12 @@ function apresentarEscolha(dia, evento) {
   const playerData = JSON.parse(fs.readFileSync(arquivoPlayer, "utf-8"));
   const playerAtual = playerData[0]; // Pega o primeiro personagem
   const character = new Character(playerAtual.name); // Cria o personagem
-  const items = new Items(); // Cria os itens (não usado diretamente aqui)
+  const items = new Items(); // Cria os itens disponíveis
 
   // Lógica de consumo de recursos com base no evento e escolha
   if (evento.evento === "Colapso do estoque de água" && escolha === 2) {
-    const aguaIndex = playerAtual.resources.indexOf("Garrafa de Água");
+    const agua = items.avaliableItems.find(item => item.name === "Garrafa de Água");
+    const aguaIndex = playerAtual.resources.findIndex(resource => resource.id === agua.id);
     if (aguaIndex !== -1) {
       playerAtual.resources.splice(aguaIndex, 1); // Remove uma garrafa de água
       console.log("Você usou 1 unidade de água.");
@@ -93,7 +101,8 @@ function apresentarEscolha(dia, evento) {
       console.log("Você não tem água suficiente para usar.");
     }
   } else if (evento.evento === "Fome extrema" && escolha === 2) {
-    const comidaIndex = playerAtual.resources.indexOf("Barra de Proteína");
+    const comida = items.avaliableItems.find(item => item.name === "Barra de Proteína");
+    const comidaIndex = playerAtual.resources.findIndex(resource => resource.id === comida.id);
     if (comidaIndex !== -1) {
       playerAtual.resources.splice(comidaIndex, 1); // Remove uma barra de proteína
       console.log("Você usou uma barra de proteína para tentar saciar sua fome!");
@@ -119,8 +128,8 @@ function registrarEvento(dia, evento, escolha) {
   fs.writeFileSync(arquivoHist, JSON.stringify(historico, null, 2));
 }
 
-// Função principal que inicia o jogo
-function iniciarJogo() {
+// Função principal que gera e executa os eventos durante o jogo
+function iniciarEventos() {
   try {
     const playerData = JSON.parse(fs.readFileSync(arquivoPlayer, "utf-8"));
     const playerAtual = playerData[0]; // Lê o primeiro personagem
@@ -130,18 +139,17 @@ function iniciarJogo() {
 
     if (character.days > 0) {
       const diasDisponiveis = Array.from({ length: character.days }, (_, i) => i + 1);
-      const eventosGerados = gerarEventos(diasDisponiveis, eventoA);
+      const eventosGerados = gerarEventos(diasDisponiveis);
       eventosGerados.forEach(({ dia, evento }) => {
         apresentarEscolha(dia, evento);
       });
     }
   } catch (error) {
-    console.log("Erro ao iniciar o jogo:", error);
+    console.log("Erro ao iniciar os eventos:", error);
   }
 }
 
-// Executa o jogo
-iniciarJogo();
+// Executa os eventos no jogo
+iniciarEventos();
 
-
-module.exports = { gerarEventos, iniciarJogo };
+module.exports = { iniciarEventos };

@@ -5,7 +5,7 @@ const {
   newGame,
   loadGame,
 } = require("../services/save_load_service");
-//const{ iniciarJogo } = require('./bunker_controller')
+const{ iniciarEventos} = require('./bunker_controller')
 
 function startGame() {
   console.log(`=====💥O MUNDO EM COLAPSO!💥=====`);
@@ -23,7 +23,7 @@ function startGame() {
 
   if (choice === 1) {
     newGame();
-    //iniciarJogo()
+    iniciarEventos()
   }
 
   if (choice === 2) {
