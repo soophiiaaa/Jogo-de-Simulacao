@@ -1,81 +1,58 @@
-const prompt = require("prompt-sync")();
 const fs = require("fs");
 const path = require("path");
-
-const Character = require("../core/character");
 const { Catastrofe } = require("../core/event");
+const Character = require("../core/character");
 
-function readPlayers() {
-  const filePath = path.join(__dirname, "../data/players.json");
-  const data = fs.readFileSync(filePath, "utf-8");
-  const players = JSON.parse(data);
-  return players;
-} //lê os jogadores salvos
+const playersFile = path.join(__dirname, "../data/players.json");
+const historicoFile = path.join(__dirname, "../data/historico.json");
 
-function savePlayers(character) {
-  const filePath = path.join(__dirname, "../data/players.json");
+// Salva estado completo do jogo (incluindo dias e dias de evento)
+function saveGameState(state) {
+  fs.writeFileSync(playersFile, JSON.stringify(state, null, 2));
+}
 
-  let players = [];
-  if (fs.existsSync(filePath)) {
-    const data = fs.readFileSync(filePath, "utf-8");
-    players = JSON.parse(data);
-  }
+function loadGameState() {
+  if (!fs.existsSync(playersFile)) return null;
+  return JSON.parse(fs.readFileSync(playersFile, "utf-8"));
+}
 
-  if (!players.some((player) => player.name === character.name)) {
-    players.push(character);
-  }
+const registroHistorico = {
+  load() {
+    if (!fs.existsSync(historicoFile)) return [];
+    return JSON.parse(fs.readFileSync(historicoFile, "utf-8"));
+  },
+  save(dia, evento, escolha) {
+    const hist = this.load();
+    hist.push({ dia, evento: evento.nome, escolha });
+    fs.writeFileSync(historicoFile, JSON.stringify(hist, null, 2));
+  },
+};
 
-  fs.writeFileSync(filePath, JSON.stringify(players, null, 2), "utf-8");
-} //salva o jogador atual
+// Gera lista aleatória de dias para ocorrências, uma única vez
+function generateEventDays(totalDias = 30) {
+  const numEvents = Math.floor(Math.random() * 6) + 5; // 5 a 10
+  const days = Array.from({ length: totalDias }, (_, i) => i + 1);
+  const shuffled = days.sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, numEvents).sort((a, b) => a - b);
+}
 
-async function newGame() {
-  const Items = require("../core/items");
-  const description = require("../ui/description");
-  const choose = require("../ui/choose");
+async function newGameData(prompt) {
+  const name = prompt("Digite seu nome: ");
+  const character = new Character(name, [], 0);
+  const event = Catastrofe.gerarDesastreAleatorio();
+  const eventDays = generateEventDays();
 
-  let name = prompt("Digite seu nome: ");
-  let character = new Character(name);
+  // Estado inicial completo: personagem + dias de evento + progresso
+  const gameState = {
+    name: character.name,
+    resources: [],
+    days: 0,
+    event: { nome: event.nome, descricao: event.descricao },
+    eventDays,
+  };
+  saveGameState(gameState);
 
-  console.log(`Bem-vindo, ${name}! Seu novo jogo começou!`);
+  return { character, event, eventDays };
+}
 
-  let event = Catastrofe.gerarDesastreAleatorio();
-  let items = new Items();
-
-  await description(character, event, items, choose);
-  savePlayers(character);
-} //inicia um novo jogo
-
-function loadGame(callback) {
-  const players = callback();
-
-  let name = prompt("Qual o seu nome, sobrevivente? ");
-  let found = false;
-
-  for (let i = 0; i < players.length; i++) {
-    if (players[i].name === name) {
-      console.log(`Bem-vindo de volta, ${players[i].name}!`);
-      found = true;
-      break;
-    }
-  }
-
-  let iniciar = prompt(`Pronto(a) para iniciar, (s/n)? `);
-
-  if (iniciar === "s") {
-    console.log(`Esse é o espírito! Aproveite a simulação!`);
-  }
-
-  if (iniciar === "n") {
-    console.log(
-      `Todos nós deveríamos estar preparados para o fim do mundo, vamos começar mesmo assim! Aproveite a simulação!`
-    );
-  }
-
-  if (!found) {
-    console.log("Jogador não encontrado. Vamos começar um novo jogo!");
-    newGame();
-    return;
-  }
-} //carrega um novo jogo
-
-module.exports = { readPlayers, savePlayers, newGame, loadGame };
+module.exports = { saveGameState, loadGameState, registroHistorico, newGameData };

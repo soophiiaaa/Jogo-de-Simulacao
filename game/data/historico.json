@@ -1,1 +1,137 @@
-[]
+[
+  {
+    "dia": 3,
+    "evento": "Colapso IA",
+    "escolha": 1
+  },
+  {
+    "dia": 8,
+    "evento": "Terremoto",
+    "escolha": 2
+  },
+  {
+    "dia": 10,
+    "evento": "Guerra Intergaláctica",
+    "escolha": 2
+  },
+  {
+    "dia": 19,
+    "evento": "Terremoto",
+    "escolha": 3
+  },
+  {
+    "dia": 21,
+    "evento": "Invasão Alienígena",
+    "escolha": 5
+  },
+  {
+    "dia": 28,
+    "evento": "Invasão Alienígena",
+    "escolha": 5
+  },
+  {
+    "dia": 1,
+    "evento": "Colapso IA",
+    "escolha": 1
+  },
+  {
+    "dia": 2,
+    "evento": "Colapso IA",
+    "escolha": null
+  },
+  {
+    "dia": 10,
+    "evento": "Guerra Intergaláctica",
+    "escolha": null
+  },
+  {
+    "dia": 13,
+    "evento": "Colapso IA",
+    "escolha": null
+  },
+  {
+    "dia": 14,
+    "evento": "Invasão Alienígena",
+    "escolha": null
+  },
+  {
+    "dia": 18,
+    "evento": "Guerra Intergaláctica",
+    "escolha": null
+  },
+  {
+    "dia": 20,
+    "evento": "Invasão Alienígena",
+    "escolha": 6
+  },
+  {
+    "dia": 25,
+    "evento": "Terremoto",
+    "escolha": null
+  },
+  {
+    "dia": 30,
+    "evento": "Terremoto",
+    "escolha": 6
+  },
+  {
+    "dia": 1,
+    "evento": "Terremoto",
+    "escolha": 1
+  },
+  {
+    "dia": 6,
+    "evento": "Ratos Mutantes",
+    "escolha": 1
+  },
+  {
+    "dia": 8,
+    "evento": "Colapso IA",
+    "escolha": null
+  },
+  {
+    "dia": 10,
+    "evento": "Invasão Alienígena",
+    "escolha": null
+  },
+  {
+    "dia": 15,
+    "evento": "Guerra Intergaláctica",
+    "escolha": null
+  },
+  {
+    "dia": 1,
+    "evento": "Guerra Intergaláctica",
+    "escolha": 1
+  },
+  {
+    "dia": 2,
+    "evento": "Guerra Intergaláctica",
+    "escolha": 2
+  },
+  {
+    "dia": 9,
+    "evento": "Colapso IA",
+    "escolha": 1
+  },
+  {
+    "dia": 10,
+    "evento": "Colapso IA",
+    "escolha": 2
+  },
+  {
+    "dia": 14,
+    "evento": "Terremoto",
+    "escolha": 1
+  },
+  {
+    "dia": 15,
+    "evento": "Colapso IA",
+    "escolha": 2
+  },
+  {
+    "dia": 20,
+    "evento": "Terremoto",
+    "escolha": 1
+  }
+]

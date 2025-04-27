@@ -1,32 +1,27 @@
-const prompt = require("prompt-sync")();
-
-const Character = require("../core/character");
 const Items = require("../core/items");
 
+// Converte input numérico em recursos no character
 function separateItems(input, items, character) {
-  let selected = input.split(" ").map((item) => parseInt(item.trim()));
+  const selectedIds = input
+    .split(" ")
+    .map((item) => parseInt(item.trim(), 10))
+    .filter((id) => !isNaN(id));
 
-  let names = selected.map((id) => {
-    let found = items.avaliableItems.find((item) => item.id === id);
-    return found ? found.name : "Item desconhecido";
-  });
-
-  names.forEach((name) => {
-    if (!character.resources.includes(name)) {
-      character.addResources(name);
+  selectedIds.forEach((id) => {
+    const found = items.avaliableItems.find((it) => it.id === id);
+    if (found && !character.resources.includes(found.name)) {
+      character.addResources(found.name);
     }
   });
-} //função que substitui o número do item escolhido pelo jogador para o nome
+}
 
-function chooseItems(character, callback) {
+// Exibe prompt de seleção de itens usando a função de prompt injetada
+function chooseItems(character, prompt) {
   const items = new Items();
-
-  let input = prompt(
+  const input = prompt(
     "Escolha o número dos seus itens (separados por espaço): "
   );
   separateItems(input, items, character);
-  console.log(`Itens Selecionados: ${character.resources.join(", ")}`);
-  callback(character);
 }
 
 module.exports = chooseItems;

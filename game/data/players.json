@@ -1,60 +1,18 @@
-[
-  {
-    "id": 0,
-    "name": "Sophia",
-    "resources": [
-      "Barra de Proteína"
-    ],
-    "days": 0
+{
+  "name": "e",
+  "resources": [
+    "Garrafa de Água"
+  ],
+  "days": 0,
+  "event": {
+    "nome": "Ratos Mutantes",
+    "descricao": "Experimentos genéticos secretos deram errado. Agora, ratos do tamanho de ursos dominam o planeta Terra."
   },
-  {
-    "id": 27,
-    "name": "e",
-    "resources": [
-      "Garrafa de Água"
-    ],
-    "days": 0
-  },
-  {
-    "id": 64,
-    "name": "n",
-    "resources": [
-      "Garrafa de Água",
-      "Barra de Proteína",
-      "Kit de Primeiros Socorros"
-    ],
-    "days": 0
-  },
-  {
-    "id": 92,
-    "name": "d",
-    "resources": [
-      "Garrafa de Água",
-      "Barra de Proteína",
-      "Comida Desidratada",
-      "Item desconhecido"
-    ],
-    "days": 0
-  },
-  {
-    "id": 3,
-    "name": "f",
-    "resources": [
-      "Comida Desidratada",
-      "Sopa Instantânea",
-      "Kit de Primeiros Socorros",
-      "Analgésico",
-      "Barra de Proteína"
-    ],
-    "days": 0
-  },
-  {
-    "id": 59,
-    "name": "pedro",
-    "resources": [
-      "Barra de Proteína",
-      "Garrafa de Água"
-    ],
-    "days": 0
-  }
-]
+  "eventDays": [
+    7,
+    16,
+    21,
+    28,
+    30
+  ]
+}
