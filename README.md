@@ -5,8 +5,6 @@ Este projeto foi desenvolvido como parte da disciplina de **Programação Orient
 
 **O Mundo em Colapso** é um jogo de simulação inspirado em *60 Seconds*. De repente, o globo entra em colapso e o jogador tem apenas 60 segundos para coletar itens essenciais e buscar um local seguro. Durante a simulação, será necessário agir com rapidez e estratégia para enfrentar diversas situações inesperadas. No final, os resultados da simulação serão exibidos. O jogo ocorre inteiramente no **console**, sem o uso de interface gráfica.  
 
-**Status do Projeto:** 🚧 *Em desenvolvimento de melhorias*  
-
 ---
 
 ### **Funcionamento**  
